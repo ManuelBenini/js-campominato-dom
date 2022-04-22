@@ -17,13 +17,13 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
 
 const btnPlay = document.getElementById('mb_play_btn');
 const container = document.querySelector('.mb_second_container');
+const BOMBS_NUMBER = 16;
 // let numberList = [];
-
 
 btnPlay.addEventListener('click', function(){
 
   container.innerHTML = '';
-  numberList = [];
+  // numberList = [];
   const difficulty = document.getElementById('difficulty_choice').value;
 
   if(difficulty === 'easy'){
@@ -42,13 +42,29 @@ btnPlay.addEventListener('click', function(){
  * @param {} 
  */
   function init(num) {
+    const bomb = createBomb(num);
+    let victoryClicks = 0;
+
     for(let i = 1; i <= num; i++){
-      const square = createSquare(container, num);
+      const square = createSquare(container, num);;
       // getUniqueRandomNumber(num)
       // console.log(numberList.sort());
       square.innerHTML = `<span>${i}</span>`;
+      square.innerNumber = i;
+      const squaresList = document.querySelectorAll('.mb_square');
+      console.log(squaresList[0].innerText);
       square.addEventListener('click', function(){
-        this.classList.add('clicked');
+        if(!bomb.includes(this.innerNumber)){
+          this.classList.add('clicked');
+          victoryClicks += 1;
+        }else{
+          for(let i = 0; i < num; i++){
+            if(bomb[i] == squaresList[i]){
+              square.classList.add('mb_bomb');
+            }
+          }
+          document.getElementById('result').innerHTML = `Hai perso! Punteggio: ${victoryClicks}`;
+        }
       })
     }
   }
@@ -77,6 +93,26 @@ btnPlay.addEventListener('click', function(){
   }
 //
 
+/**
+ * Creare N bombe randomiche
+ * @param {number} number 
+ * @returns 
+ */
+function createBomb(number) {
+  const bombList = [];
+  
+  while(bombList.length < BOMBS_NUMBER){
+    const bomb = getRandomNumber(1, number);
+
+    if (!bombList.includes(bomb)) {
+      bombList.push(bomb);
+    }
+  }
+
+  console.log(bombList.sort());
+  return bombList;
+}
+
 
 /**
    * Generare numeri random
@@ -84,9 +120,9 @@ btnPlay.addEventListener('click', function(){
    * @param {number} max 
    * @returns 
    */
-  // function getRandomNumber(min, max) {
-  //   return Math.floor(Math.random() * (max - min + 1) + min);
-  // }
+  function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
 //
 
 

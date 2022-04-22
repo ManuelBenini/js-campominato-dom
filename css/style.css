@@ -41,12 +41,26 @@ main{
 }
 
 .mb_second_container{
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
   width: 500px;
   height: 500px;
   border: 1px solid black;
+}
+
+.mb_overlay{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  z-index: 10;
+  display: none;
+}
+
+.mb_overlay.defeat{
+  display: block;
 }
 
 .mb_square{

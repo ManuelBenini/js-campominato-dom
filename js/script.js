@@ -22,7 +22,7 @@ const BOMBS_NUMBER = 16;
 
 btnPlay.addEventListener('click', function(){
 
-  container.innerHTML = '';
+  container.innerHTML = `<div class="mb_overlay"></div>`;
   // numberList = [];
   const difficulty = document.getElementById('difficulty_choice').value;
 
@@ -59,11 +59,12 @@ btnPlay.addEventListener('click', function(){
           victoryClicks += 1;
         }else{
           for(let i = 0; i < num; i++){
-            if(bomb[i] == squaresList[i]){
+            if(bomb.includes(squaresList[i])){
               square.classList.add('mb_bomb');
             }
           }
           document.getElementById('result').innerHTML = `Hai perso! Punteggio: ${victoryClicks}`;
+          document.querySelector('.mb_overlay').classList.add('defeat')
         }
       })
     }

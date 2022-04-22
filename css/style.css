@@ -1,0 +1,98 @@
+/* Generic */
+  body{
+    background-color: gray;
+    background-color: #57ecce;
+  }
+
+  ul{
+    list-style: none;
+  }
+/*  */
+
+/* Header */
+header{
+  display: flex;
+  align-items: center;
+  height: 70px;
+  background-color: white;
+}
+
+.mb_first_container{
+  width: 70%;
+  margin: 0 auto;
+}
+
+.mb_btn{
+  height: 27px;
+  display: flex;
+  align-items: center;
+}
+
+/*  */
+
+
+/* Main */
+main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 120px);
+}
+
+.mb_second_container{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+}
+
+.mb_square{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid yellow;
+  background-color: rgb(112, 12, 112);
+}
+
+.mb_square.square49{
+  width: calc(100% / 7);
+  height: calc(100% / 7);
+}
+
+.mb_square.square81{
+  width: calc(100% / 9);
+  height: calc(100% / 9);
+}
+
+.mb_square.square100{
+  width: calc(100% / 10);
+  height: calc(100% / 10);
+}
+
+.mb_square.clicked{
+  background-color: rgb(13, 143, 175);
+}
+
+.mb_square span{
+  display: none;
+}
+
+.mb_square.clicked span{
+  display: block;
+}
+
+/*  */
+
+
+/* Footer */
+footer{
+  display: flex;
+  align-items: center;
+  height: 50px;
+  background-color: white;
+}
+
+/*  */
+

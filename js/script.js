@@ -43,33 +43,48 @@ btnPlay.addEventListener('click', function(){
  */
   function init(num) {
     const bomb = createBomb(num);
+    console.log('Array bombe', bomb.sort());
     let victoryClicks = 0;
 
     for(let i = 1; i <= num; i++){
-      const square = createSquare(container, num);;
+    cubeCreators(container, i, num);
+  }
+
+//
+
+function cubeCreators(container, num, number){
+   const square = createSquare(container, number);;
       // getUniqueRandomNumber(num)
       // console.log(numberList.sort());
-      square.innerHTML = `<span>${i}</span>`;
-      square.innerNumber = i;
-      const squaresList = document.querySelectorAll('.mb_square');
-      console.log(squaresList[0].innerText);
+      square.innerHTML = `<span>${num}</span>`;
+      square.innerNumber = num;
+
       square.addEventListener('click', function(){
+        const squaresList = document.querySelectorAll('.mb_square');
+        console.log('Array quadrati', squaresList);
+
         if(!bomb.includes(this.innerNumber)){
           this.classList.add('clicked');
           victoryClicks += 1;
+
         }else{
-          for(let i = 0; i < num; i++){
-            if(bomb.includes(squaresList[i])){
-              square.classList.add('mb_bomb');
+          
+          for(let i = 0; i < squaresList.length; i++){
+            if(bomb.includes(squaresList[i].innerNumber)){
+              squaresList[i].classList.add('mb_bomb');
             }
           }
+          
           document.getElementById('result').innerHTML = `Hai perso! Punteggio: ${victoryClicks}`;
           document.querySelector('.mb_overlay').classList.add('defeat')
         }
+
       })
+
     }
-  }
-//
+
+    
+}
 
 
 /**
@@ -77,16 +92,16 @@ btnPlay.addEventListener('click', function(){
  * @param {HTMlDivElement} target 
  * @returns
  */
-  function createSquare(htmlElement, num) {
+  function createSquare(htmlElement, number) {
     const square = document.createElement('div');
     square.className = 'mb_square';
     // const number = getRandomNumber(1, num);
     // square.innerHTML = `<span>${number}</span>`;
-    if(num === 49){
+    if(number === 49){
       square.classList.add('square49');
-    }else if(num === 81){
+    }else if(number === 81){
       square.classList.add('square81');
-    }else if(num === 100){
+    }else if(number === 100){
       square.classList.add('square100');
     }
     htmlElement.append(square);
@@ -110,7 +125,6 @@ function createBomb(number) {
     }
   }
 
-  console.log(bombList.sort());
   return bombList;
 }
 
